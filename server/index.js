@@ -4,13 +4,19 @@ import cors from "cors";
 import helmet from "helmet";
 import dotenv from "dotenv";
 import morgan from "morgan";
-// import router from "./routes/clientRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import clientRoutes from "./routes/clientRoutes.js";
 import { initSupabase } from "./supabaseClient.js";
 
 
 // configuration
 dotenv.config();
 const app = express();
+const port = process.env.PORT || 5000;
+
+
+// middlewares
+app.use(express.static('public'));
 app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
@@ -19,7 +25,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-const port = process.env.PORT || 5000;
+
+// view engine
+app.set('view engine', 'ejs');
 
 
 // connecting to supabase
@@ -29,10 +37,11 @@ initSupabase(supabaseUrl, supabaseKey);
 
 
 // setting routes
-// app.use("/client", router);
+app.use("/auth", authRoutes);
+app.use("/client", clientRoutes);
 
 app.get("/", (_req, res) => {
-    res.send('Supabase-Express API is running');
+    res.render('home');
 });
 
 app.get("/health", (_req, res) => {
