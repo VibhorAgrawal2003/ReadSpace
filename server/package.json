@@ -22,7 +22,7 @@
   "homepage": "https://github.com/VibhorAgrawal2003/blogging#readme",
   "devDependencies": {
     "nodemon": "^3.1.4",
-    "prettier": "^3.3.2"
+    "prettier": "3.3.2"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.44.2",
@@ -33,6 +33,7 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0"
   },
   "type": "module"

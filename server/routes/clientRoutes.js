@@ -1,6 +1,19 @@
 import express from "express";
-import { getBlogsAll, getBlogsId, getBlogsUser, updateBlog, deleteBlog, searchBlogs, createBlog } from "../controllers/blogs.js";
-import { getCommentsBlog, getCommentsUser, deleteComment, updateComment } from "../controllers/comments.js";
+import {
+  getBlogsAll,
+  getBlogsId,
+  getBlogsUser,
+  updateBlog,
+  deleteBlog,
+  searchBlogs,
+  createBlog,
+} from "../controllers/blogs.js";
+import {
+  getCommentsBlog,
+  getCommentsUser,
+  deleteComment,
+  updateComment,
+} from "../controllers/comments.js";
 import { getUsersAll, getUser, searchUsers } from "../controllers/users.js";
 
 const router = express.Router();
