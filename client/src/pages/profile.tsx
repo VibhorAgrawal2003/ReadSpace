@@ -17,12 +17,12 @@ const Profile: React.FC = () => {
             const token = sessionStorage.getItem("token");
 
             if (!token) {
-                navigate("/auth"); // Redirect if no token is found
+                navigate("/auth");
                 return;
             }
 
             try {
-                const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/${username}`, {
+                const response = await axios.get(`${import.meta.env.VITE_SERVER}/client/users/${username}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setProfile(response.data);

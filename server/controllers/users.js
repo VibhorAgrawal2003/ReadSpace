@@ -26,7 +26,6 @@ export const getUser = async (req, res) => {
     try {
         const supabase = getSupabase();
         const { username } = req.params;
-
         const { data, error } = await supabase.from("users").select("*").eq("username", username).single();
 
         if (error) throw error;

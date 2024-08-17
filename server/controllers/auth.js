@@ -6,6 +6,7 @@ import { getSupabase } from "../supabaseClient.js";
 // configuration
 dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET;
+const DEFAULT_PIC = process.env.PICTURE_PATH + "default.png";
 
 // Helper function to hash a password
 const hashPassword = (password) => {
@@ -38,8 +39,13 @@ export const signup = async (req, res) => {
         const { data: profileData, error: profileError } = await supabase
             .from("profiles")
             .insert([{ email, username, password: hashedPassword, salt }]);
-
         if (profileError) throw profileError;
+
+        // Insert basic user customization into the database
+        const { data: userData, error: userError } = await supabase
+            .from("users")
+            .insert([{ username, admin: 0, bio: "Hello, I am new to this website!", picture_url: DEFAULT_PIC }]);
+        if (userError) throw userError;
 
         res.status(201).json({ message: "User created successfully" });
     } catch (error) {

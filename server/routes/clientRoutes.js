@@ -29,8 +29,8 @@ router.put("/comments/:id", updateComment);
 router.delete("/comments/:id", deleteComment);
 
 // User routes
-router.get("/users", getUsersAll);
 router.get("/users/:username", getUser);
 router.get("/search/users", searchUsers);
+router.get("/users", getUsersAll);
 
 export default router;
