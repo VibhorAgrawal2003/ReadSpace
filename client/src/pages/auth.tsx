@@ -24,7 +24,8 @@ const Auth: React.FC = () => {
 
             // Save the token in sessionStorage
             sessionStorage.setItem("token", response.data.token);
-            setIsSuccessful(true); // Set success state to trigger redirection
+            sessionStorage.setItem("username", username);
+            setIsSuccessful(true);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 console.error("Axios error response data:", error.response?.data);
@@ -39,13 +40,11 @@ const Auth: React.FC = () => {
     useEffect(() => {
         if (isSuccessful) {
             if (isLogin) {
-                // Redirect to home page after successful login
                 navigate("/");
             } else {
-                // Redirect to login page after successful sign up
                 navigate("/auth");
             }
-            setIsSuccessful(false); // Reset the success state
+            setIsSuccessful(false);
         }
     }, [isSuccessful, isLogin, navigate]);
 
