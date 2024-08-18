@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Create: React.FC = () => {
     const [title, setTitle] = useState<string>("");
     const [content, setContent] = useState<string>("");
+    const [tags, setTags] = useState<string>("");
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -18,12 +19,15 @@ const Create: React.FC = () => {
             return;
         }
 
+        // Process the tags: split by comma, trim whitespaces, convert to lowercase
+        const processedTags = tags.split(",").map((tag) => tag.trim().toLowerCase());
+
         const endpoint = `${import.meta.env.VITE_SERVER}/client/blogs/new`;
 
         try {
             await axios.post(
                 endpoint,
-                { title, content, user: username },
+                { title, content, tags: processedTags, user: username },
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
@@ -56,6 +60,16 @@ const Create: React.FC = () => {
                         required
                         rows={10}
                         placeholder='This is where your blog content goes...'
+                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
+                    />
+                </div>
+                <div>
+                    <input
+                        id='tags'
+                        type='text'
+                        value={tags}
+                        onChange={(e) => setTags(e.target.value)}
+                        placeholder='Enter tags, separated by commas'
                         className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
                     />
                 </div>

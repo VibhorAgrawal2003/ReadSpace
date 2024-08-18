@@ -1,7 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import logo from "../images/blogger.svg";
 
 const Layout = () => {
+    const navigate = useNavigate();
+    const token = sessionStorage.getItem("token");
+    const username = sessionStorage.getItem("username");
+
     return (
         <div className='min-h-screen bg-gray-100'>
             {/* Navigation Bar */}
@@ -11,10 +15,37 @@ const Layout = () => {
                     <span className='text-white text-2xl font-bold'>Blogger</span>
                 </div>
                 <ul className='flex space-x-8 items-center'>
-                    <li className='text-white cursor-pointer hover:underline'>Log In</li>
-                    <li className='bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-600 cursor-pointer'>
-                        Sign Up
-                    </li>
+                    {token ? (
+                        <>
+                            <li
+                                className='text-white cursor-pointer hover:underline'
+                                onClick={() => navigate(`/profile/${username}`)}
+                            >
+                                {username}
+                            </li>
+                            <li
+                                className='bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer'
+                                onClick={() => {
+                                    sessionStorage.clear();
+                                    navigate("/auth");
+                                }}
+                            >
+                                Log Out
+                            </li>
+                        </>
+                    ) : (
+                        <>
+                            <li className='text-white cursor-pointer hover:underline' onClick={() => navigate("/auth")}>
+                                Log In
+                            </li>
+                            <li
+                                className='bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer'
+                                onClick={() => navigate("/auth")}
+                            >
+                                Sign Up
+                            </li>
+                        </>
+                    )}
                 </ul>
             </nav>
 

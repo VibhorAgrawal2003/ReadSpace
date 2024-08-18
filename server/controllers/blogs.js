@@ -79,11 +79,11 @@ export const getBlogsUser = async (req, res) => {
 export const createBlog = async (req, res) => {
     try {
         const supabase = getSupabase();
-        const { title, content, user } = req.body;
+        const { title, content, user, tags } = req.body;
 
         const { data, error } = await supabase
             .from("blogs")
-            .insert([{ title, author: user, likes: 0, content }])
+            .insert([{ title, author: user, likes: 0, content, tags }])
             .select();
 
         if (error) throw error;
