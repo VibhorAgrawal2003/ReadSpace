@@ -49,44 +49,49 @@ const Auth: React.FC = () => {
     }, [isSuccessful, isLogin, navigate]);
 
     return (
-        <div className='auth-container'>
-            <form className='auth-form' onSubmit={handleSubmit}>
-                <h1>{isLogin ? "Log In" : "Sign Up"}</h1>
+        <div className='auth-container p-6 max-w-5xl mx-auto'>
+            <form className='auth-form m-auto text-left' onSubmit={handleSubmit}>
+                <h1>ReadSpace 🚀</h1>
                 {!isLogin && (
                     <div>
                         <label>
-                            Email:
                             <input
                                 type='email'
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required={!isLogin}
+                                placeholder='Email'
                             />
                         </label>
                     </div>
                 )}
                 <div>
                     <label>
-                        Username:
-                        <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} required />
+                        <input
+                            type='text'
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                            placeholder='Username'
+                        />
                     </label>
                 </div>
                 <div>
                     <label>
-                        Password:
                         <input
                             type='password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
+                            placeholder='Password'
                         />
                     </label>
                 </div>
                 <button type='submit'>{isLogin ? "Log In" : "Sign Up"}</button>
+                <div className='switch-button' onClick={() => setIsLogin(!isLogin)}>
+                    {isLogin ? "Create New Account" : "Log In to Existing Account"}
+                </div>
             </form>
-            <div className='switch-button' onClick={() => setIsLogin(!isLogin)}>
-                Switch to {isLogin ? "Sign Up" : "Log In"}
-            </div>
         </div>
     );
 };

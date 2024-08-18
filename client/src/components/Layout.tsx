@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import logo from "../images/blogger.svg";
+import logo from "../images/rocket.svg";
 
 const Layout = () => {
     const navigate = useNavigate();
