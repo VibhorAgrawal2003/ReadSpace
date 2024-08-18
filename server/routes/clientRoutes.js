@@ -1,7 +1,7 @@
 import express from "express";
 import { getBlogsId, getBlogsUser, updateBlog, deleteBlog, searchBlogs, createBlog } from "../controllers/blogs.js";
 import { getCommentsBlog, getCommentsUser, deleteComment, updateComment } from "../controllers/comments.js";
-import { getUsersAll, getUser, searchUsers } from "../controllers/users.js";
+import { getUsersAll, getUser, searchUsers, editUser } from "../controllers/users.js";
 
 const router = express.Router();
 
@@ -21,6 +21,7 @@ router.delete("/comments/:id", deleteComment);
 
 // User routes
 router.get("/users/:username", getUser);
+router.put("/users/:username", editUser);
 router.get("/search/users", searchUsers);
 router.get("/users", getUsersAll);
 

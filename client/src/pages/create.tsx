@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Create: React.FC = () => {
     const [title, setTitle] = useState<string>("");
+    const [description, setDescription] = useState<string>("");
     const [content, setContent] = useState<string>("");
     const [tags, setTags] = useState<string>("");
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Create: React.FC = () => {
         try {
             await axios.post(
                 endpoint,
-                { title, content, tags: processedTags, user: username },
+                { title, content, description, tags: processedTags, user: username },
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
@@ -51,6 +52,17 @@ const Create: React.FC = () => {
                         onChange={(e) => setTitle(e.target.value)}
                         required
                         placeholder='Title'
+                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
+                    />
+                </div>
+                <div>
+                    <input
+                        id='description'
+                        type='text'
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        required
+                        placeholder='Description'
                         className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
                     />
                 </div>

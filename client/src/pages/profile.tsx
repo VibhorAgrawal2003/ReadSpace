@@ -12,6 +12,7 @@ interface UserProfile {
 interface Blog {
     bid: number;
     title: string;
+    description: string;
     content: string;
     likes: number;
     tags: Array<string>;

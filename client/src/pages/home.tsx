@@ -6,6 +6,7 @@ import BlogCard from "../components/BlogCard";
 interface Blog {
     bid: number;
     title: string;
+    description: string;
     content: string;
     likes: number;
     tags: Array<string>;

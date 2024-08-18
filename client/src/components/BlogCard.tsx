@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 interface Blog {
     bid: number;
     title: string;
+    description: string;
     content: string;
     likes: number;
     tags: Array<string>;
@@ -24,7 +25,11 @@ const BlogCard: React.FC<{ blog: Blog }> = ({ blog }) => {
             className='border border-gray-300 rounded-md p-4 cursor-pointer hover:bg-gray-100 transition'
             onClick={handleClick}
         >
-            <h3 className='text-xl font-semibold text-left'>{blog.title}</h3>
+            <div className='mb-2'>
+                <h3 className='text-xl font-semibold text-left'>{blog.title}</h3>
+                <p className='text-left max-w-2xl'>{blog.description}</p>
+            </div>
+
             <div className='flex justify-between text-gray-600 text-sm'>
                 <p className='text-sm text-gray-500 text-left'>Likes: {blog.likes}</p>
                 <p className='text-sm text-gray-500 text-left'>
