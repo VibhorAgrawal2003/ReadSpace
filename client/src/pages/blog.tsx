@@ -18,6 +18,7 @@ const Blog: React.FC = () => {
     const [blogItem, setBlogItem] = useState<BlogItem | null>(null);
     const { bid } = useParams<{ bid: string }>();
     const navigate = useNavigate();
+    const [isDeleting, setIsDeleting] = useState(false); // New state for delete operation
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -49,6 +50,32 @@ const Blog: React.FC = () => {
         }
     }, [bid, navigate]);
 
+    const handleDelete = async () => {
+        const token = sessionStorage.getItem("token");
+
+        if (!token) {
+            console.error("No token found in session");
+            navigate("/auth");
+            return;
+        }
+
+        try {
+            setIsDeleting(true);
+            await axios.delete(`${import.meta.env.VITE_SERVER}/client/blogs/${bid}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            alert("Blog deleted successfully");
+            navigate("/"); // Navigate to the home or blogs list page after deletion
+        } catch (error) {
+            console.error("Error deleting blog:", error);
+            alert("Failed to delete the blog");
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
     return (
         <div className='min-h-screen bg-gray-100 p-6'>
             <div className='max-w-4xl mx-auto bg-white shadow-md rounded-lg overflow-hidden'>
@@ -76,6 +103,15 @@ const Blog: React.FC = () => {
                         >
                             Author: {blogItem?.author || "Anonymous"}
                         </p>
+                        {blogItem && sessionStorage.getItem("username") === blogItem.author && (
+                            <button
+                                onClick={handleDelete}
+                                disabled={isDeleting}
+                                className='mt-4 text-red-500 hover:underline'
+                            >
+                                {isDeleting ? "Deleting..." : "Delete Blog"}
+                            </button>
+                        )}
                     </div>
 
                     {/* Tags */}
