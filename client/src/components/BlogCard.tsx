@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 interface Blog {
     bid: number;
+    author: string;
     title: string;
     description: string;
     content: string;
@@ -26,7 +27,7 @@ const BlogCard: React.FC<{ blog: Blog }> = ({ blog }) => {
             onClick={handleClick}
         >
             <div className='mb-2'>
-                <h3 className='text-xl font-semibold text-left'>{blog.title}</h3>
+                <h3 className='text-xl font-semibold text-left max-w-lg'>{blog.title}</h3>
                 <p className='text-left max-w-2xl'>{blog.description}</p>
             </div>
 

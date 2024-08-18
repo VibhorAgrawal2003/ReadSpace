@@ -5,6 +5,7 @@ import BlogContent from "../components/BlogContent";
 
 interface BlogItem {
     bid: number;
+    author: string;
     title: string;
     content: string;
     likes: number;
@@ -61,10 +62,19 @@ const Blog: React.FC = () => {
                     </div>
 
                     {/* Blog Metadata */}
-                    <div className='flex justify-between text-gray-600 text-sm mb-6'>
-                        <p className='text-sm text-gray-500'>Likes: {blogItem?.likes || 0}</p>
-                        <p className='text-sm text-gray-500'>
-                            Uploaded on: {blogItem ? new Date(blogItem.date_upload).toLocaleDateString() : "Loading..."}
+                    <div className='mb-6'>
+                        <div className='flex justify-between text-gray-600 text-sm'>
+                            <p className='text-sm text-gray-500'>Likes: {blogItem?.likes || 0}</p>
+                            <p className='text-sm text-gray-500'>
+                                Uploaded on:{" "}
+                                {blogItem ? new Date(blogItem.date_upload).toLocaleDateString() : "Loading..."}
+                            </p>
+                        </div>
+                        <p
+                            className='text-sm text-gray-500 text-left cursor-pointer hover:underline'
+                            onClick={() => navigate(`/profile/${blogItem?.author}`)}
+                        >
+                            Author: {blogItem?.author || "Anonymous"}
                         </p>
                     </div>
 
