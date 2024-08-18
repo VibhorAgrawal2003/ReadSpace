@@ -14,7 +14,9 @@ interface Blog {
     title: string;
     content: string;
     likes: number;
+    tags: Array<string>;
     date_upload: Date;
+    date_modify: Date;
 }
 
 const Profile: React.FC = () => {

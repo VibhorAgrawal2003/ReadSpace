@@ -19,8 +19,10 @@ const Create: React.FC = () => {
             return;
         }
 
-        // Process the tags: split by comma, trim whitespaces, convert to lowercase
         const processedTags = tags.split(",").map((tag) => tag.trim().toLowerCase());
+        if (processedTags.length == 1 && processedTags[0] == "") {
+            processedTags[0] = "general";
+        }
 
         const endpoint = `${import.meta.env.VITE_SERVER}/client/blogs/new`;
 

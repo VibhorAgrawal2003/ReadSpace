@@ -87,3 +87,33 @@
     padding: 20px;
     background-color: #f9f9f9;
 }
+
+/* MARKDOWN VIEWER */
+.markdown-body h1 {
+    font-size: 2em;
+    margin-top: 1em;
+}
+
+.markdown-body h2 {
+    font-size: 1.5em;
+    margin-top: 1em;
+}
+
+.markdown-body h3 {
+    font-size: 1.2em;
+    margin-top: 1em;
+}
+
+.markdown-body p {
+    margin-bottom: 1em;
+}
+
+.markdown-body ul {
+    margin-left: 1em;
+    list-style-type: disc;
+}
+
+.markdown-body ol {
+    margin-left: 1em;
+    list-style-type: decimal;
+}

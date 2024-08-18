@@ -18,7 +18,7 @@ function App() {
                     <Route path='auth' element={<Auth />} />
 
                     {/* Blog Page */}
-                    <Route path='blog' element={<Blog />} />
+                    <Route path='blog/:bid' element={<Blog />} />
 
                     {/* Create Page */}
                     <Route path='create' element={<Create />} />
@@ -29,7 +29,7 @@ function App() {
                     {/* Home Page */}
                     <Route index element={<Home />} />
 
-                    {/* Profile Page with username parameter */}
+                    {/* Profile Page */}
                     <Route path='profile/:username' element={<Profile />} />
                 </Route>
             </Routes>

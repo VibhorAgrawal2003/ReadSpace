@@ -33,7 +33,6 @@ export const getBlogsId = async (req, res) => {
         const { id } = req.params;
 
         const { data, error } = await supabase.from("blogs").select("*").eq("bid", id).single();
-
         if (error) throw error;
 
         if (data) {

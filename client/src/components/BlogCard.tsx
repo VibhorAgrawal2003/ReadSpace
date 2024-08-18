@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Blog {
     bid: number;
@@ -11,8 +12,18 @@ interface Blog {
 }
 
 const BlogCard: React.FC<{ blog: Blog }> = ({ blog }) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(`/blog/${blog.bid}`);
+    };
+
     return (
-        <div key={blog.bid} className='border border-gray-300 rounded-md p-4'>
+        <div
+            key={blog.bid}
+            className='border border-gray-300 rounded-md p-4 cursor-pointer hover:bg-gray-100 transition'
+            onClick={handleClick}
+        >
             <h3 className='text-xl font-semibold text-left'>{blog.title}</h3>
             <div className='flex justify-between text-gray-600 text-sm'>
                 <p className='text-sm text-gray-500 text-left'>Likes: {blog.likes}</p>

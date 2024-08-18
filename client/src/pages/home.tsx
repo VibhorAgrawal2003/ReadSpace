@@ -24,19 +24,8 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         const fetchBlogs = async () => {
-            const token = sessionStorage.getItem("token");
-            const username = sessionStorage.getItem("username");
-
-            if (!username) {
-                console.error("No username found in session");
-                return;
-            }
-
             try {
-                const response = await axios.get(`${import.meta.env.VITE_SERVER}/client/blogs`, {
-                    headers: { Authorization: `Bearer ${token}` },
-                    params: { user: username },
-                });
+                const response = await axios.get(`${import.meta.env.VITE_SERVER}/blogs`);
                 setBlogs(response.data.blogs);
             } catch (error) {
                 console.error("Error fetching blogs:", error);

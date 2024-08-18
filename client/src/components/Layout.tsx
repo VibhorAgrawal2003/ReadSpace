@@ -12,7 +12,9 @@ const Layout = () => {
             <nav className='bg-gray-800 p-4 flex justify-between items-center'>
                 <div className='flex flex-row'>
                     <img src={logo} alt='Website Logo' className='h-8 w-8 mr-2' />
-                    <span className='text-white text-2xl font-bold'>Blogger</span>
+                    <div className='text-white text-2xl font-bold' onClick={() => navigate(`/`)}>
+                        ReadSpace
+                    </div>
                 </div>
                 <ul className='flex space-x-8 items-center'>
                     {token ? (
